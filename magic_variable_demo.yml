@@ -1,0 +1,13 @@
+---
+- name: Display magic variables
+  hosts: all
+  tasks:
+    - name: display magic variables
+      debug:
+        msg:
+          ansible_version: "{{ ansible_version  }}"
+          inventory_file: " {{inventory_file }}"
+          host_ip_address: " {{hostvars['webservers']['ansible_default_ipv4']['address'] }}"
+         # current host: "{{ inventory_hostname }}"
+         # Groups name : "{{ group_names }}"
+         # All Web Servers: "{{ groups['webserver'] }}"

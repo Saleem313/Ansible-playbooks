@@ -1,0 +1,11 @@
+---
+- name: ansible dictionary demo
+  hosts: all
+  vars:
+    user:
+      username: "admin"
+      password: "admin"
+  tasks:
+    - name: accesss username and password
+      debug:
+        msg: "username for this is {{user.username}} and password {{user.password}}"

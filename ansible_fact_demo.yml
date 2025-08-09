@@ -1,0 +1,11 @@
+---
+ - name: Gathering ansible facts
+   hosts: all
+   become: true
+   tasks:
+     - name: gathering ansible facts
+       debug:
+       #  var: ansible_facts
+         msg:
+           - "OS: {{ ansible_facts['distribution'] }}"
+           - " distriubtion_version: {{ ansible_facts['distribution_version'] }}"

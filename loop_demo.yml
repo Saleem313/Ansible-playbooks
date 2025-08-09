@@ -1,0 +1,14 @@
+---
+- name: looping demo
+  hosts: all
+  become: true
+  tasks:
+    - name: install multiple packages
+      yum:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - zip
+        - wget
+        - nginx
+        - git

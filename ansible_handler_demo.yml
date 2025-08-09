@@ -1,0 +1,26 @@
+---
+- name: Configure and restart Nginx
+  hosts: webservers
+  become: yes
+
+  tasks:
+    - name: Ensure Nginx is installed
+      ansible.builtin.package:
+        name: nginx
+        state: present
+
+    - name: Copy Nginx configuration file
+      ansible.builtin.copy:
+        src: /home/ansible/nginx.conf
+        dest: /etc/nginx/nginx.conf
+        owner: root
+        group: root
+        mode: '0644'
+      notify:
+        - Restart Nginx
+
+  handlers:
+    - name: Restart Nginx
+      ansible.builtin.service:
+        name: nginx
+        state: restarted

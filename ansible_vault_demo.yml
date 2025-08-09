@@ -1,0 +1,7 @@
+---
+- name: Ansible Vault Demo
+  hosts: all
+  tasks:
+    - name: display ansible secret
+      debug:
+        var: ansible_secret

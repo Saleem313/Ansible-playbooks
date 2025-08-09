@@ -1,0 +1,27 @@
+
+---
+- name: register demo
+  hosts: all
+  become: true
+  tasks:
+    - name: register usage
+      shell: cat /etc/ansible/hosts
+      register: result
+      ignore_errors: yes
+
+    - name: date of the server
+      shell: date
+      register: date_result
+
+    - name: Date result
+      debug:
+        msg: "the date of system is {{date_result_stdout_lines}}"
+
+    - name: register output
+      debug:
+        var: result.stdout_lines
+      when: result.rc == 0
+
+    - name: show return code
+      debug:
+        var: result.rc

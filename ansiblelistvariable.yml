@@ -1,0 +1,12 @@
+---
+ - name: Packages list demo
+   hosts: all
+   vars:
+     packages:
+       - git
+       - maven
+       - nginx
+   tasks:
+     - name: get first package name
+       debug:
+         msg: "First package name is {{packages[0]}}"
