@@ -1,0 +1,22 @@
+---
+name: Install httpd server ansible nodes 
+become: yes
+hosts: webservers
+
+tasks:
+  - name: install httpd server
+    yum:
+      name: httpd
+      state: install
+      
+  - name: start httpd service and enabled
+    service:
+       name: httpd
+       state: started
+       enabled: yes
+
+
+  - name: create index.html file
+    copy:
+       content: <h1> Httpd service installed on host {{inventory_hostname}}<h1>
+       dest: /var/www/html/index.html
